@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body class="bg-dark d-flex flex-column align-items-center justify-content-center">
+        <main class="bg-light d-flex flex-column align-items-center justify-content-start w-50 h-100 rounded-5 m-5">
+            <h1 class="h1 mt-5">Register</h1>
+            <form id="registerForm" class="mt-5 mb-5 w-100 rounded-5 d-flex flex-column align-items-center justify-content-center">
+                <div class=" w-75 h-100 rounded-4 d-flex align-items-start justify-content-between gap-4">
+                    <div class="my-3 w-50">
+                        <label for="name"><span class="text-danger" tabindex="1">*</span> Name:</label>
+                        <input  id="name" type="text" class="form-control rounded-3 border-secondary mb-2 " placeholder="">
+                        <label for="password" ><span class="text-danger">*</span> Password:</label>
+                        <input  id="password" type="password" class="form-control rounded-3 border-secondary" placeholder="" tabindex="3">
+                    </div>
+                    <div class="my-3 w-50">
+                        <label for="email"><span class="text-danger" tabindex="2">*</span> Email:</label>
+                        <input  id="email" type="text" class="form-control rounded-3 border-secondary mb-2" placeholder="">
+                        <label for="passwordConfirm"><span class="text-danger">*</span> Re-enter Password:</label>
+                        <input  id="passwordConfirm" type="password" class="form-control rounded-3 border-secondary" placeholder="" tabindex="4">
+                    </div>
+                </div>
+                <div class="d-flex flex-column w-75">
+                    <label for="name" class="mx-2">About me:</label>
+                    <textarea  id="bio" class="rounded-3 w-100 border-secondary minH-1"></textarea>
+                </div>
+                <div class="d-flex align-items-center justify-content-start w-75 mt-3">
+                    <!--Here can add more sections-->
+                </div>
+                <div class="d-flex align-items-start justify-content-between w-75 mt-3">
+                    <ul  id="inputsCondition" class="text-dark">
+                        <!--Use input condicion for display de list of requirements -->
+                        <label class="text-dark label-bold">Password requirements</label>
+                        <ul>
+                            <li id="hasCap">Cap Letters</li>
+                            <li id="hasLow">Lower case letter</li>
+                            <li id="hasSpe">Special Character</li>
+                            <li id="hasNum">Numbers</li>
+                            <li id="has8More">Min 8 character</li>
+                            <li id="passMatch">Password Match</li>
+                        </ul>
+                    </ul>
+                    <button class="btn btn-primary w-25" type="submit">Register Now</button>
+                </div>
+                
+            </form>
+        </main>
+        <script src="./script.js"></script>
+    </body>
+</html>

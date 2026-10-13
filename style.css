@@ -533,16 +533,6 @@ footer > span:last-child {
   .story-footer {
     display: none;
   }
-  .story:after {
-    content: "✳";
-    position: absolute;
-    right: -20px;
-    bottom: -55px;
-    color: #ffffff13;
-    font-size: 220px;
-    line-height: 1;
-    pointer-events: none;
-  }
   .form-panel {
     padding: 28px 25px;
   }

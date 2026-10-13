@@ -1,182 +1,108 @@
-const registerForm = document.getElementById("registerForm")
-const usersInfo = []
-const username = document.getElementById("name")
-const email = document.getElementById("email")
-const password = document.getElementById("password")
-const passwordConfirm = document.getElementById("passwordConfirm")
-const about = document.getElementById("bio")
-
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
-const passHasLower = /[a-z]/;
-const passHasCaps = /[A-Z]/;
-const passHasNum = /\d/;
-const passHasSpec = /[\W_]/;
-const passHas8 = /^.{8,}$/;
-
-let nameInput = false;
-let emailInput = false;
-let passInput = false;
-let passConfirmInput = false;
-
-
-const hasCapsLI = document.getElementById("hasCap")
-const hasLowerLI = document.getElementById("hasLow")
-const hasSpecLI = document.getElementById("hasSpe")
-const hasNumLI = document.getElementById("hasNum")
-const has8MoreLI = document.getElementById("has8More")
-const passMatchLI = document.getElementById("passMatch")
-
-const listUser = []
-
-username.addEventListener("input", () => {
-    if(username.value.length < 3){
-        username.classList.add("error-border");
-        username.classList.remove("success-border")
-        nameInput = false
-    } else {
-        username.classList.remove("error-border")
-        username.classList.add("success-border")
-        nameInput = true
-    }
-
-})
-
-email.addEventListener("input", () => {
-    const emailVal = email.value;
-    const isValid = emailRegex.test(emailVal)
-    
-    if(!isValid){
-        email.classList.add("error-border");
-        email.classList.remove("success-border");
-        emailInput = false
-
-    } else {
-        email.classList.remove("error-border")
-    }
-
-    if(isValid){
-        email.classList.add("success-border");
-        emailInput = true
-    }
-})
-
-password.addEventListener("input", () => {
-    const passVal = password.value;
-    const isValidLower = passHasLower.test(passVal);
-    const isValidCaps = passHasCaps.test(passVal);
-    const isValidCNum = passHasNum.test(passVal);
-    const isValidSpec = passHasSpec.test(passVal);
-    const isValid8Min = passHas8.test(passVal);
-
-    if(password.value !== passwordConfirm.value || password.value === "" || passwordConfirm === ""){
-        passMatchLI.classList.remove("text-success-personalized")
-        passMatchLI.classList.add("text-danger-personalized")
-    }else {
-        passMatchLI.classList.add("text-success-personalized")
-        passMatchLI.classList.remove("text-danger-personalized")
-    }
-    
-    console.log(isValidSpec)
-
-    if(!isValidLower || !isValidCaps || !isValidCNum || !isValidSpec || !isValid8Min){
-        password.classList.add("error-border");
-        password.classList.remove("success-border");
-        passInput = false
-
-    }else {
-        password.classList.remove("error-border")
-    }
-
-    if(isValidLower && isValidCaps && isValidCNum && isValidSpec && isValid8Min){
-        password.classList.add("success-border");
-        passInput = true
-    }
-
-    if(isValidLower){
-        hasLowerLI.classList.add("text-success-personalized")
-        hasLowerLI.classList.remove("text-danger-personalized")
-    }else{
-        hasLowerLI.classList.add("text-danger-personalized")
-        hasLowerLI.classList.remove("text-success-personalized")
-    }
-
-    if(isValidCaps){
-        hasCapsLI.classList.add("text-success-personalized")
-        hasCapsLI.classList.remove("text-danger-personalized")
-    }else{
-        hasCapsLI.classList.add("text-danger-personalized")
-        hasCapsLI.classList.remove("text-success-personalized")
-    }
-
-    if(isValidCNum){
-        hasNumLI.classList.add("text-success-personalized")
-        hasNumLI.classList.remove("text-danger-personalized")
-    }else{
-        hasNumLI.classList.add("text-danger-personalized")
-        hasNumLI.classList.remove("text-success-personalized")
-    }
-
-    if(isValidSpec){
-        hasSpecLI.classList.add("text-success-personalized")
-        hasSpecLI.classList.remove("text-danger-personalized")
-    }else{
-        hasSpecLI.classList.add("text-danger-personalized")
-        hasSpecLI.classList.remove("text-success-personalized")
-    }
-
-    if(isValid8Min){
-        has8MoreLI.classList.add("text-success-personalized")
-        has8MoreLI.classList.remove("text-danger-personalized")
-    }else{
-        has8MoreLI.classList.add("text-danger-personalized")
-        has8MoreLI.classList.remove("text-success-personalized")
-    }
-    
-})
-
-passwordConfirm.addEventListener("input", () => {
-    if(password.value !== passwordConfirm.value || password.value === "" || passwordConfirm === ""){
-        passMatchLI.classList.remove("text-success-personalized")
-        passMatchLI.classList.add("text-danger-personalized")
-        passwordConfirm.classList.add("error-border");
-        passwordConfirm.classList.remove("success-border");
-        passConfirmInput = false
-    }else {
-        passMatchLI.classList.add("text-success-personalized")
-        passMatchLI.classList.remove("text-danger-personalized")
-        passwordConfirm.classList.remove("error-border")
-        passwordConfirm.classList.add("success-border");
-        passConfirmInput = true
-    }
-
-})
-
-registerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if(username.value === "" || email.value === "" || password.value === "" || passwordConfirm.value == ""){
-        username.classList.add("error-border");
-        email.classList.add("error-border");
-        password.classList.add("error-border");
-        passwordConfirm.classList.add("error-border");
-        return;
-    }
-
-    if(!nameInput || !emailInput || !passInput || !passConfirmInput){
-        alert("Algunos de los campos no fue completado correctamente")
-        return
-    }
-
-
-
-    const userToSummit = {
-        userName: username.value,
-        email: email.value,
-        password: password.value,
-        about: about.value
-    }
-    
-    listUser.push(userToSummit);
-    console.log(listUser)
-})
+const form = document.getElementById("registerForm");
+const fields = ["name", "email", "password", "passwordConfirm"];
+const inputs = Object.fromEntries(
+  fields.map((id) => [id, document.getElementById(id)]),
+);
+const touched = new Set();
+const status = document.getElementById("form-status");
+const rules = {
+  has8More: (value) => value.length >= 8,
+  hasCap: (value) => /[A-Z]/.test(value),
+  hasLow: (value) => /[a-z]/.test(value),
+  hasNum: (value) => /\d/.test(value),
+  hasSpe: (value) => /[^a-zA-Z0-9\s]/.test(value),
+};
+function errors() {
+  return {
+    name:
+      inputs.name.value.trim().length >= 3
+        ? ""
+        : "Enter your name using at least 3 characters.",
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email.value.trim())
+      ? ""
+      : "Enter a valid email address, like you@example.com.",
+    password: Object.values(rules).every((test) => test(inputs.password.value))
+      ? ""
+      : "Complete all five items in the password checklist.",
+    passwordConfirm:
+      inputs.passwordConfirm.value &&
+      inputs.passwordConfirm.value === inputs.password.value
+        ? ""
+        : "Your passwords need to match.",
+  };
+}
+function update() {
+  const current = errors();
+  fields.forEach((id) => {
+    const show = touched.has(id);
+    document.getElementById(`${id}-error`).textContent = show
+      ? current[id]
+      : "";
+    inputs[id].setAttribute(
+      "aria-invalid",
+      String(show && Boolean(current[id])),
+    );
+    inputs[id].classList.toggle("valid", show && !current[id]);
+  });
+  let count = 0;
+  Object.entries(rules).forEach(([id, test]) => {
+    const met = test(inputs.password.value);
+    const item = document.getElementById(id);
+    item.classList.toggle("met", met);
+    item.setAttribute(
+      "aria-label",
+      `${item.textContent}: ${met ? "met" : "not met"}`,
+    );
+    if (met) count++;
+  });
+  document.getElementById("password-score").textContent = `${count} / 5`;
+  document.getElementById("meter-fill").style.width = `${count * 20}%`;
+  document.getElementById("completion").textContent =
+    `${fields.filter((id) => !current[id]).length} of 4 ready`;
+  return current;
+}
+fields.forEach((id) => {
+  inputs[id].addEventListener("blur", () => {
+    touched.add(id);
+    update();
+  });
+  inputs[id].addEventListener("input", () => {
+    status.hidden = true;
+    update();
+  });
+});
+document.getElementById("bio").addEventListener("input", (event) => {
+  document.getElementById("bio-count").textContent =
+    `${event.target.value.length} / 240`;
+  status.hidden = true;
+});
+document.querySelectorAll(".reveal").forEach((button) => {
+  button.addEventListener("click", () => {
+    const input = document.getElementById(button.dataset.for);
+    const showing = input.type === "password";
+    input.type = showing ? "text" : "password";
+    button.textContent = showing ? "Hide" : "Show";
+    button.setAttribute("aria-pressed", String(showing));
+    button.setAttribute(
+      "aria-label",
+      `${showing ? "Hide" : "Show"} ${input.id === "password" ? "password" : "confirmation password"}`,
+    );
+  });
+});
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  fields.forEach((id) => touched.add(id));
+  const current = update();
+  const invalid = fields.find((id) => current[id]);
+  status.hidden = false;
+  status.classList.toggle("error-status", Boolean(invalid));
+  if (invalid) {
+    status.textContent =
+      "A few details need attention. Check the highlighted fields above.";
+    inputs[invalid].focus();
+  } else {
+    status.textContent =
+      "Everything checks out! Your profile passed validation. This is a demo: no account was created and no information was saved or sent.";
+    status.focus();
+  }
+});

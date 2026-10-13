@@ -1,55 +1,199 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body class="bg-dark d-flex flex-column align-items-center justify-content-center">
-        <main class="bg-light d-flex flex-column align-items-center justify-content-start w-50 h-100 rounded-5 m-5">
-            <h1 class="h1 mt-5">Register</h1>
-            <form id="registerForm" class="mt-5 mb-5 w-100 rounded-5 d-flex flex-column align-items-center justify-content-center">
-                <div class=" w-75 h-100 rounded-4 d-flex align-items-start justify-content-between gap-4">
-                    <div class="my-3 w-50">
-                        <label for="name"><span class="text-danger" tabindex="1">*</span> Name:</label>
-                        <input  id="name" type="text" class="form-control rounded-3 border-secondary mb-2 " placeholder="">
-                        <label for="password" ><span class="text-danger">*</span> Password:</label>
-                        <input  id="password" type="password" class="form-control rounded-3 border-secondary" placeholder="" tabindex="3">
-                    </div>
-                    <div class="my-3 w-50">
-                        <label for="email"><span class="text-danger" tabindex="2">*</span> Email:</label>
-                        <input  id="email" type="text" class="form-control rounded-3 border-secondary mb-2" placeholder="">
-                        <label for="passwordConfirm"><span class="text-danger">*</span> Re-enter Password:</label>
-                        <input  id="passwordConfirm" type="password" class="form-control rounded-3 border-secondary" placeholder="" tabindex="4">
-                    </div>
-                </div>
-                <div class="d-flex flex-column w-75">
-                    <label for="name" class="mx-2">About me:</label>
-                    <textarea  id="bio" class="rounded-3 w-100 border-secondary minH-1"></textarea>
-                </div>
-                <div class="d-flex align-items-center justify-content-start w-75 mt-3">
-                    <!--Here can add more sections-->
-                </div>
-                <div class="d-flex align-items-start justify-content-between w-75 mt-3">
-                    <ul  id="inputsCondition" class="text-dark">
-                        <!--Use input condicion for display de list of requirements -->
-                        <label class="text-dark label-bold">Password requirements</label>
-                        <ul>
-                            <li id="hasCap">Cap Letters</li>
-                            <li id="hasLow">Lower case letter</li>
-                            <li id="hasSpe">Special Character</li>
-                            <li id="hasNum">Numbers</li>
-                            <li id="has8More">Min 8 character</li>
-                            <li id="passMatch">Password Match</li>
-                        </ul>
-                    </ul>
-                    <button class="btn btn-primary w-25" type="submit">Register Now</button>
-                </div>
-                
-            </form>
-        </main>
-        <script src="./script.js"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A thoughtful registration form with instant feedback and clear, accessible validation."
+    />
+    <meta name="theme-color" content="#212529" />
+    <title>Formly — A better first impression</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="shell">
+      <a href="./" class="brand"
+        ><span class="brand-mark" aria-hidden="true">f.</span>formly</a
+      ><span class="demo-label"><i></i> INTERACTIVE FORM DEMO</span>
+    </header>
+    <main class="shell">
+      <div class="registration">
+        <aside class="story">
+          <div class="eyebrow">GOOD THINGS START HERE</div>
+          <h1>A little about you.<br /><em>A world ahead.</em></h1>
+          <p>
+            A better first impression starts with the details. Let’s get yours
+            just right.
+          </p>
+          <div class="art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
+            <div class="orb">✳</div>
+            <span class="orbit-dot"></span>
+            <div class="floating-note">
+              <span class="check">✓</span>
+              <div>Looks good.<small>Every detail, in place.</small></div>
+            </div>
+          </div>
+          <ol class="benefits">
+            <li>
+              <span>01</span>
+              <div>
+                <strong>Make it personal</strong>
+                <p>A name, an email, a little personality.</p>
+              </div>
+            </li>
+            <li>
+              <span>02</span>
+              <div>
+                <strong>Get instant feedback</strong>
+                <p>Clear guidance, right when you need it.</p>
+              </div>
+            </li>
+            <li>
+              <span>03</span>
+              <div>
+                <strong>You’re in control</strong>
+                <p>Your details stay in this browser tab.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="story-footer">
+            THOUGHTFULLY BUILT. SIMPLY HUMAN. <span>↗</span>
+          </div>
+        </aside>
+        <section class="form-panel" aria-labelledby="form-title">
+          <div class="form-top">
+            <span class="eyebrow">YOUR PROFILE</span
+            ><span class="completion" id="completion">0 of 4 ready</span>
+          </div>
+          <h2 id="form-title">Let’s meet you.</h2>
+          <p class="subtitle">
+            Fill in the details below to try live validation.
+          </p>
+          <form id="registerForm" novalidate>
+            <div class="field">
+              <label for="name">Full name <span>*</span></label
+              ><input
+                id="name"
+                name="name"
+                autocomplete="name"
+                placeholder="e.g. Alex Morgan"
+                maxlength="80"
+                required
+                aria-describedby="name-error"
+              />
+              <p class="error" id="name-error"></p>
+            </div>
+            <div class="field">
+              <label for="email">Email address <span>*</span></label
+              ><input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                maxlength="254"
+                required
+                aria-describedby="email-error"
+              />
+              <p class="error" id="email-error"></p>
+            </div>
+            <div class="field">
+              <label for="password">Password <span>*</span></label>
+              <div class="password-field">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  placeholder="Make it a strong one"
+                  maxlength="128"
+                  required
+                  aria-describedby="password-error requirements"
+                /><button
+                  class="reveal"
+                  type="button"
+                  data-for="password"
+                  aria-label="Show password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+              <p class="error" id="password-error"></p>
+            </div>
+            <div class="requirements" id="requirements">
+              <div class="requirements-heading">
+                <span>Password checklist</span
+                ><span id="password-score">0 / 5</span>
+              </div>
+              <div class="meter" aria-hidden="true">
+                <span id="meter-fill"></span>
+              </div>
+              <ul>
+                <li id="has8More">At least 8 characters</li>
+                <li id="hasCap">An uppercase letter</li>
+                <li id="hasLow">A lowercase letter</li>
+                <li id="hasNum">A number</li>
+                <li id="hasSpe">A special character</li>
+              </ul>
+            </div>
+            <div class="field">
+              <label for="passwordConfirm"
+                >Confirm password <span>*</span></label
+              >
+              <div class="password-field">
+                <input
+                  id="passwordConfirm"
+                  name="passwordConfirm"
+                  type="password"
+                  autocomplete="new-password"
+                  placeholder="Once more, just to be sure"
+                  maxlength="128"
+                  required
+                  aria-describedby="passwordConfirm-error"
+                /><button
+                  class="reveal"
+                  type="button"
+                  data-for="passwordConfirm"
+                  aria-label="Show confirmation password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+              <p class="error" id="passwordConfirm-error"></p>
+            </div>
+            <div class="field bio">
+              <label for="bio"
+                >A little about you
+                <span class="optional">Optional</span></label
+              ><textarea
+                id="bio"
+                maxlength="240"
+                placeholder="A passion, a hobby, or what makes you, you."
+                aria-describedby="bio-count"
+              ></textarea
+              ><span id="bio-count">0 / 240</span>
+            </div>
+            <button type="submit" class="primary">
+              Validate my profile <span aria-hidden="true">↗</span>
+            </button>
+            <p class="demo-note">
+              Just a demo. No account is created and nothing is sent.
+            </p>
+            <div id="form-status" role="status" tabindex="-1" hidden></div>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer class="shell">
+      <span>Formly <span class="muted">/ Built by Francis Martinez</span></span
+      ><span>Small details. Better experiences.</span>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>
